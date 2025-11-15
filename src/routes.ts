@@ -1,0 +1,7 @@
+export const routes = {
+  login: '/login',
+  products: '/',
+  newProduct: '/products/new',
+  editProduct: '/products/:id/edit',
+  product: '/products/:id',
+};
