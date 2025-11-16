@@ -1,6 +1,8 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import ReactPaginate from 'react-paginate';
 import { useQuery } from '@tanstack/react-query';
 import { FaSearch } from 'react-icons/fa';
+import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
 
 import api from '@/api';
 import { useAuth } from '@/auth/context';
@@ -9,13 +11,15 @@ import { type Product as ProductType } from '@/types';
 
 export const ProductsView = () => {
   const searchRef = useRef<HTMLInputElement | null>(null);
+  const [page, setPage] = useState(0);
   const { user, logout } = useAuth();
   const { isPending, error, data } = useQuery({
-    queryKey: ['repoData'],
-    queryFn: () => api.get<ProductType[]>('/products?limit=20&?offset=0').then((res) => res.data),
+    queryKey: ['products', page],
+    queryFn: () => api.get<ProductType[]>(`/products?limit=20&offset=${page * 10}`).then((res) => res.data),
   });
 
-  console.log(data, error);
+  console.log(error);
+
   return (
     <div>
       <div className="flex justify-between bg-blue p-1">
@@ -40,6 +44,20 @@ export const ProductsView = () => {
               <Product key={item.id} {...item} />
             ))}
           </ul>
+          <ReactPaginate
+            breakLabel="..."
+            nextLabel={<MdNavigateNext size={40} />}
+            onPageChange={({ selected }) => setPage(selected)}
+            pageRangeDisplayed={3}
+            pageCount={5}
+            previousLabel={<MdNavigateBefore size={40} />}
+            disabledClassName="text-gray-600 hover:text-gray-600"
+            renderOnZeroPageCount={null}
+            containerClassName="flex gap-10 text-xl p-10 items-center"
+            activeClassName="text-blue font-bold text-2xl"
+            pageLinkClassName="no-underline"
+            breakLinkClassName="no-underline"
+          />
         </div>
       )}
     </div>
