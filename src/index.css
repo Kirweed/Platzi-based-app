@@ -7,75 +7,80 @@
   --color-white: #eeeeee;
 }
 
-:root {
+* {
   box-sizing: border-box;
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  color: var(--color-white);
-  background-color: var(--color-dark);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  text-decoration: underline;
-  cursor: pointer;
-}
+@layer base {
+  :root {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    color: var(--color-white);
+    background-color: var(--color-dark);
 
-a:hover {
-  color: #535bf2;
-}
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-.root {
-  margin: auto;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
+  a {
+    font-weight: 500;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 
-h1 {
-  font-size: 3.2em;
-  margin: 0;
-  padding: 0;
-}
+  a:hover {
+    color: #535bf2;
+  }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  border: 2px solid var(--color-white);
-  background-color: var(--color-blue);
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
+  .root {
+    margin: auto;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+  }
 
-button:hover {
-  border-color: var(--color-blue);
-}
+  h1 {
+    font-size: 3.2em;
+    margin: 0;
+    padding: 0;
+  }
 
-button:focus,
-button:focus-visible {
-  outline: 4px solid var(--color-blue);
-}
+  button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    border: 2px solid var(--color-white);
+    background-color: var(--color-blue);
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
 
-input {
-  width: 100%;
-  border-radius: 0.25rem;
-  padding: 0.5rem;
-  border: 1px solid var(--color-white);
-}
+  button:hover {
+    border-color: var(--color-blue);
+  }
 
-input:focus,
-input:focus-visible,
-input:active {
-  border: 2px solid var(--color-blue);
-  outline: none;
+  button:focus,
+  button:focus-visible {
+    outline: 4px solid var(--color-blue);
+  }
+
+  input {
+    width: 100%;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    border: 1px solid var(--color-white);
+  }
+
+  input:focus,
+  input:focus-visible,
+  input:active {
+    border: 2px solid var(--color-blue);
+    outline: none;
+  }
 }
