@@ -3,7 +3,7 @@ import { useState, useEffect, type PropsWithChildren } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import api from '@/api.ts';
-import type { User } from '@/auth/types';
+import type { CreateUserDto, User, UserResponse } from '@/auth/types';
 import { AuthContext } from '@/auth/context';
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const tryRestore = async (): Promise<void> => {
+    const tryRestore = async () => {
       const refreshToken = Cookies.get('refresh_token');
       if (!refreshToken) {
         setLoading(false);
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       }
     };
 
-    void tryRestore();
+    tryRestore();
   }, []);
 
   const login = async ({ email, password }: { email: string; password: string }): Promise<User> => {
@@ -58,5 +58,10 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     navigate('/login');
   };
 
-  return <AuthContext.Provider value={{ user, loading, login, logout }}>{children}</AuthContext.Provider>;
+  const createUser = async (data: CreateUserDto) => {
+    const res = await api.post<UserResponse>('https://api.escuelajs.co/api/v1/users/', data);
+    return res.data;
+  };
+
+  return <AuthContext.Provider value={{ user, loading, login, logout, createUser }}>{children}</AuthContext.Provider>;
 };

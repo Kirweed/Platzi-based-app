@@ -8,7 +8,6 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true, // allow cookies if server sets them
 });
 
 // Attach access token from localStorage (or memory via AuthContext)

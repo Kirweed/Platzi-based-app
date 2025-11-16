@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import { Products, Login } from '@/pages';
 import { AuthProvider, useAuth } from '@/auth';
+import Register from '@/pages/Register';
 
 const ProtectedRoute: React.FC<{ children: React.ReactElement }> = ({ children }) => {
   const { user, loading } = useAuth();
@@ -16,6 +17,7 @@ const App: React.FC = () => {
       <AuthProvider>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route
             path="/"
             element={
