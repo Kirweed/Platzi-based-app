@@ -1,3 +1,3 @@
-export * from './Login';
-export * from './Register';
-export * from './Products';
+export * from './LoginView';
+export * from './RegisterView';
+export * from './ProductsView';

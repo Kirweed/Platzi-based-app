@@ -1,6 +1,6 @@
 import { useAuth } from '@/auth/context';
 
-export const Products = () => {
+export const ProductsView = () => {
   const { user, logout } = useAuth();
   return (
     <div className="p-8">

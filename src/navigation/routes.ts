@@ -5,4 +5,4 @@ export const routes = {
   newProduct: '/products/new',
   editProduct: '/products/:id/edit',
   product: '/products/:id',
-};
+} as const;

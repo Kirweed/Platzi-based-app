@@ -1,6 +1,5 @@
 import Cookies from 'js-cookie';
 import { useState, useEffect, type PropsWithChildren } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import api from '@/api.ts';
 import type { CreateUserDto, User, UserResponse } from '@/auth/types';
@@ -9,7 +8,6 @@ import { AuthContext } from '@/auth/context';
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const tryRestore = async () => {
@@ -55,7 +53,6 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     localStorage.removeItem('access_token');
     Cookies.remove('refresh_token');
     setUser(null);
-    navigate('/login');
   };
 
   const createUser = async (data: CreateUserDto) => {
