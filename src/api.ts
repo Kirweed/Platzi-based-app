@@ -58,7 +58,7 @@ api.interceptors.response.use(
         // Fetch refresh token from cookie
         const refreshToken = Cookies.get('refresh_token');
         // If you had httpOnly cookie set by server, you would call endpoint without sending body token
-        const res = await axios.post(`${API_BASE}/auth/refresh-token`, { refresh_token: refreshToken });
+        const res = await axios.post(`${API_BASE}/auth/refresh-token`, { refreshToken });
         const { access_token, refresh_token } = res.data;
 
         // store new tokens

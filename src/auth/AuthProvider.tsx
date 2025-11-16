@@ -11,14 +11,14 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     const tryRestore = async () => {
-      const refreshToken = Cookies.get('refresh_token');
-      if (!refreshToken) {
+      const refresh_token = Cookies.get('refresh_token');
+      if (!refresh_token) {
         setLoading(false);
         return;
       }
 
       try {
-        const res = await api.post('/auth/refresh-token', { refresh_token: refreshToken });
+        const res = await api.post('/auth/refresh-token', { refreshToken: refresh_token });
         const { access_token } = res.data as { access_token: string };
         localStorage.setItem('access_token', access_token);
         api.defaults.headers.common.Authorization = 'Bearer ' + access_token;
