@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 
 import { useAuth } from '@/auth';
-import type { CreateUserDto } from '@/auth/types';
 import { routes } from '@/navigation/routes';
 import { Form } from '@/common/components';
+import type { CreateUserDto } from '@/DTOs';
 
 export const RegisterView = () => {
   const [loading, setLoading] = useState(false);
@@ -15,7 +15,13 @@ export const RegisterView = () => {
     setError,
     formState: { errors },
   } = useForm<CreateUserDto>({
-    defaultValues: { name: '', email: '', password: '', avatar: 'https://api.lorem.space/image/face?w=150&h=150' },
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      avatar: 'https://api.lorem.space/image/face?w=150&h=150',
+      role: 'admin',
+    },
     mode: 'onBlur',
   });
   const { createUser } = useAuth();
@@ -58,9 +64,7 @@ export const RegisterView = () => {
       />
       {errors.password && <div className="text-red-600 mb-3">{errors.password.message}</div>}
 
-      <button className="w-full bg-blue-600 text-white py-2 rounded" disabled={loading}>
-        {loading ? 'loading...' : 'Create Account'}
-      </button>
+      <button disabled={loading}>{loading ? 'loading...' : 'Create Account'}</button>
     </Form>
   );
 };

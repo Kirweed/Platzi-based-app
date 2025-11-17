@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from '@/auth';
 import { Form } from '@/common/components';
@@ -19,6 +20,7 @@ export const LoginView = () => {
     formState: { errors },
   } = useForm<LoginValues>({ defaultValues: { email: '', password: '' }, mode: 'onBlur' });
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<LoginValues> = async ({ email, password }): Promise<void> => {
     setLoading(true);
@@ -28,6 +30,7 @@ export const LoginView = () => {
       setError('password', { message: 'Invalid email or password' });
     } finally {
       setLoading(false);
+      navigate(routes.products);
     }
   };
 

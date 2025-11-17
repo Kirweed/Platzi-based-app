@@ -11,4 +11,5 @@ export interface CreateUserDto {
   email: string;
   password: string;
   avatar: string;
+  role: string;
 }

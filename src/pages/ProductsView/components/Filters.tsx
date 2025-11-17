@@ -1,11 +1,11 @@
-import Select from 'react-select';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import { Controller, useForm, type SubmitHandler } from 'react-hook-form';
 
 import { useCategories } from '@/common/hooks';
-import { PriceRange } from '@/pages/ProductsView/components/PriceRange';
+import { PriceRange } from '@/pages/ProductsView/components';
 import { useProducts } from '@/pages/ProductsView/context';
 import type { FilterFormValues } from '@/pages/ProductsView/types';
+import { SelectInput } from '@/common/components';
 
 interface FiltersProps {
   open: boolean;
@@ -38,24 +38,27 @@ export const Filters = ({ open, setOpen }: FiltersProps) => {
           <h2 className="text-2xl font-bold">Filters:</h2>
           <div className="flex flex-col gap-20">
             <div className="flex flex-col gap-5 w-full">
-              <p className="font-semibold">Price range</p>
+              <h3 className="font-semibold">Price range</h3>
               <Controller control={control} name="price" render={({ field }) => <PriceRange {...field} />} />
             </div>
-            {categories && (
-              <Controller
-                control={control}
-                name="slug"
-                render={({ field }) => (
-                  <Select
-                    {...field}
-                    options={[
-                      { value: 'all', label: 'all' },
-                      ...categories.map(({ name, slug }) => ({ label: name, value: slug })),
-                    ]}
-                  />
-                )}
-              />
-            )}
+            <div className="flex flex-col gap-5 w-full">
+              <h3 className="font-semibold">Category:</h3>
+              {categories && (
+                <Controller
+                  control={control}
+                  name="slug"
+                  render={({ field }) => (
+                    <SelectInput
+                      {...field}
+                      options={[
+                        { value: 'all', label: 'all' },
+                        ...categories.map(({ name, slug }) => ({ label: name, value: slug })),
+                      ]}
+                    />
+                  )}
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>

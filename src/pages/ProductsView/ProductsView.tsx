@@ -2,20 +2,16 @@ import ReactPaginate from 'react-paginate';
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
 import { isEmpty } from 'lodash';
 
-import { useAuth } from '@/auth/context';
 import { ControlBar, Product } from '@/pages/ProductsView/components';
 import { useProducts } from '@/pages/ProductsView/context';
+import { Header } from '@/common/components';
 
 export const ProductsView = () => {
   const { isPending, data, setPage } = useProducts();
-  const { user, logout } = useAuth();
 
   return (
     <div>
-      <div className="flex justify-between bg-blue p-1">
-        <p className="text-2xl">Welcome, {user?.name || user?.email}!</p>
-        <button onClick={logout}>Logout</button>
-      </div>
+      <Header />
       <div className="w-full flex flex-col gap-10 p-5 items-center">
         <ControlBar />
         {isPending ? (

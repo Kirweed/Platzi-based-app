@@ -6,6 +6,7 @@ import { ProductsProvider } from '@/pages/ProductsView/ProductsProvider';
 import { routes } from './routes';
 
 const ProductsView = lazy(() => import('@/pages/ProductsView').then((module) => ({ default: module.ProductsView })));
+const ProductView = lazy(() => import('@/pages/ProductView').then((module) => ({ default: module.ProductView })));
 const NewProductView = lazy(() =>
   import('@/pages/NewProductView').then((module) => ({ default: module.NewProductView })),
 );
@@ -34,6 +35,14 @@ export const AuthenticatedRouter = () => (
         }
       />
       <Route path={routes.product}>
+        <Route
+          index
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <ProductView />
+            </Suspense>
+          }
+        />
         <Route path={routes.edit} element={<></>} />
       </Route>
     </Route>
