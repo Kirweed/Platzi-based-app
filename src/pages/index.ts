@@ -1,3 +1,4 @@
 export * from './LoginView';
 export * from './RegisterView';
-export * from './ProductsView/ProductsView';
+export * from './ProductsView';
+export * from './EmptyView';

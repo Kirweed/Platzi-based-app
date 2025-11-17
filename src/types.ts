@@ -25,3 +25,8 @@ export interface Category {
   creationAt: string;
   updatedAt: string;
 }
+
+export interface Option {
+  label: string;
+  value: string;
+}

@@ -1,8 +1,8 @@
 export const routes = {
   login: '/login',
   register: '/register',
-  products: '/',
-  newProduct: '/products/new',
-  editProduct: '/products/:id/edit',
+  products: '/products',
   product: '/products/:id',
+  edit: '/products/:id/edit',
+  new: '/products/new',
 } as const;

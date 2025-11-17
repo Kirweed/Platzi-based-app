@@ -1,5 +1,6 @@
 import ReactPaginate from 'react-paginate';
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md';
+import { isEmpty } from 'lodash';
 
 import { useAuth } from '@/auth/context';
 import { ControlBar, Product } from '@/pages/ProductsView/components';
@@ -19,6 +20,8 @@ export const ProductsView = () => {
         <ControlBar />
         {isPending ? (
           <h1>loading...</h1>
+        ) : isEmpty(data) ? (
+          <h3 className="text-3xl my-20">No products matching your filters or search</h3>
         ) : (
           <ul className="flex flex-wrap gap-8 justify-center">
             {data?.map((item) => (

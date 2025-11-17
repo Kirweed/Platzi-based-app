@@ -2,8 +2,9 @@ import Cookies from 'js-cookie';
 import { useState, useEffect, type PropsWithChildren } from 'react';
 
 import api from '@/api.ts';
-import type { CreateUserDto, User, UserResponse } from '@/auth/types';
+import type { User, UserResponse } from '@/auth/types';
 import { AuthContext } from '@/auth/context';
+import type { CreateUserDto } from '@/DTOs';
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [user, setUser] = useState<User | null>(null);
@@ -56,7 +57,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   };
 
   const createUser = async (data: CreateUserDto) => {
-    const res = await api.post<UserResponse>('https://api.escuelajs.co/api/v1/users/', data);
+    const res = await api.post<UserResponse>('/users', data);
     return res.data;
   };
 

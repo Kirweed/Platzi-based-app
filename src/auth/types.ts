@@ -1,3 +1,5 @@
+import type { CreateUserDto } from '@/DTOs';
+
 export interface User {
   id: number;
   email: string;
@@ -10,13 +12,6 @@ export interface AuthContextType {
   login: (creds: { email: string; password: string }) => Promise<User>;
   logout: () => void;
   createUser: (data: CreateUserDto) => Promise<UserResponse>;
-}
-
-export interface CreateUserDto {
-  name: string;
-  email: string;
-  password: string;
-  avatar: string;
 }
 
 export interface UserResponse {

@@ -1,22 +1,16 @@
+import type { ControllerRenderProps } from 'react-hook-form';
 import { Range } from 'react-range';
 
-import type { Price } from '@/pages/ProductsView/types';
+import type { FilterFormValues } from '@/pages/ProductsView/types';
 
-interface PriceRangeProps {
-  min: number;
-  max: number;
-  setPrice: (price: Price) => void;
-}
-
-export const PriceRange = ({ min, max, setPrice }: PriceRangeProps) => {
-  console.log(min, max);
+export const PriceRange = ({ value, ...rest }: ControllerRenderProps<FilterFormValues, 'price'>) => {
   return (
     <Range
+      {...rest}
       step={1}
       min={0}
       max={100}
-      values={[min, max]}
-      onChange={(values) => setPrice({ min: values[0], max: values[1] })}
+      values={value}
       renderTrack={({ props, children }) => (
         <div
           {...props}
@@ -45,7 +39,9 @@ export const PriceRange = ({ min, max, setPrice }: PriceRangeProps) => {
               borderRadius: '50%',
             }}
           >
-            <span className="absolute top-5 whitespace-nowrap">{props.key === 0 ? `${min} PLN` : `${max} PLN`}</span>
+            <span className="absolute top-5 whitespace-nowrap">
+              {props.key === 0 ? `${value[0]} PLN` : `${value[1]} PLN`}
+            </span>
           </div>
         );
       }}
